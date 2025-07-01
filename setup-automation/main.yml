@@ -13,7 +13,7 @@
       ansible_become_password: "{{ lookup('ansible.builtin.env', 'BASTION_PASSWORD') }}"
   - name: Add control host
     ansible.builtin.add_host:
-      name: "control"
+      name: "controller"
       ansible_ssh_host: "controller"
       ansible_ssh_port: "{{ lookup('ansible.builtin.env', 'BASTION_PORT') }}"
       ansible_ssh_user: "{{ lookup('ansible.builtin.env', 'BASTION_USER') }}"
