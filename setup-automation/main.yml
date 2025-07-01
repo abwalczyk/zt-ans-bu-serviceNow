@@ -14,7 +14,7 @@
   - name: Add control host
     ansible.builtin.add_host:
       name: "control"
-      ansible_ssh_host: "control"
+      ansible_ssh_host: "controller"
       ansible_ssh_port: "{{ lookup('ansible.builtin.env', 'BASTION_PORT') }}"
       ansible_ssh_user: "{{ lookup('ansible.builtin.env', 'BASTION_USER') }}"
       ansible_ssh_pass: "{{ lookup('ansible.builtin.env', 'BASTION_PASSWORD') }}"
