@@ -76,5 +76,9 @@ systemctl start httpd
 mkdir -p /backup
 chmod -R 777 /backup
 
+# Create servicenow project directory
+mkdir -p /home/rhel/servicenow_project
+chown -R rhel:rhel /home/rhel/servicenow_project
+
 # Additional ServiceNow-specific configurations
 echo "ServiceNow Node01 setup completed successfully"

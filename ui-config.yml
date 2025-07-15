@@ -29,7 +29,9 @@ tabs:
     external: false
   - name: ">_ control"
     url: /wetty
-  - name: ">_ node01"
-    url: /wetty_node01
-  - name: ">_ node02"
-    url: /wetty_node02
+  - name: "code server"
+    url: https://code-server-${guid}.${domain}/
+    external: false
+  - name: ServiceNow
+    url: https://ansible.service-now.com
+    external: true
