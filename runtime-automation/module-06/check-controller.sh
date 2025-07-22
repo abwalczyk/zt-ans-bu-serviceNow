@@ -7,10 +7,6 @@ inventory_source="inventory-source"
 organization_name="Default"
 playbook_path="/tmp/check-inventory-sync.yml"
 
-# Export environment variables
-export ADMIN_CONTROLLER_USERNAME=$(agent variable get ADMIN_CONTROLLER_USERNAME)
-export ADMIN_CONTROLLER_PASSWORD=$(agent variable get ADMIN_CONTROLLER_PASSWORD)
-
 # Function to run the ansible-playbook command and handle output
 run_playbook() {
   local job_template_name="$1"

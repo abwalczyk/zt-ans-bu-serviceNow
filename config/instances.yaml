@@ -17,7 +17,6 @@ virtualmachines:
             protocol: TCP
             targetPort: 443
             name: control-https
-    routes:
       - name: control-https
         host: control
         service: control-https
@@ -78,7 +77,6 @@ virtualmachines:
       runcmd:
         - echo "PasswordAuthentication yes" > /etc/ssh/sshd_config.d/50-cloud-init.conf
         - systemctl reload sshd
-
   - name: "node02"
     image: "rhel-9.5"
     memory: "2G"
@@ -97,3 +95,43 @@ virtualmachines:
       runcmd:
         - echo "PasswordAuthentication yes" > /etc/ssh/sshd_config.d/50-cloud-init.conf
         - systemctl reload sshd
+  - name: code-server
+    image: codercom/code-server:latest
+    image_size: "30Gi"
+    memory: "2G"
+    cores: 2
+    command: [ "code-server" ]
+    args: [ "--auth", "none", "--user-data-dir", "/home/coder/.local/share/code-server", "--extensions-dir", "/home/coder/.local/share/code-server/extensions", "--bind-addr", "0.0.0.0:8080", "/home/coder/project" ]
+    ports:
+      - name: code-server
+        containerPort: 8080
+        protocol: TCP
+    volumeMounts:
+      - name: code-storage
+        mountPath: /home/coder/
+    volumes:
+      - name: code-storage
+        emptyDir: {}
+    tags:
+      - key: "AnsibleGroup"
+        value: "isolated"
+    networks:
+      - default
+    environment:
+      HOME: "/home/coder"
+    services:
+      - name: code-server
+        ports:
+          - port: 8080
+            protocol: TCP
+            targetPort: 8080
+            name: code-server
+    routes:
+      - name: code-server
+        host: code-server
+        service: code-server
+        targetPort: 8080
+        tls: true
+        tls_termination: Edge
+    commands:
+      - git clone http://gitea:gitea@gitea:3000/student/aap25-roadshow-content.git /home/coder/project
