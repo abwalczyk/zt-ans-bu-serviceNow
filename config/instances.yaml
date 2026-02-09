@@ -32,7 +32,7 @@ containers:
         tls: true
         tls_termination: Edge
     commands:
-      - git clone https://github.com/cloin/instruqt-snow /tmp/repo
+      - git clone https://github.com/abwalczyk/instruqt-snow /tmp/repo
       - cp -r /tmp/repo/student_project /home/coder/project
       - rm -rf /tmp/repo
 virtualmachines:

@@ -18,7 +18,7 @@ tee /tmp/create-inventory-project.yml << EOF
       organization: Default
       state: present
       scm_type: git
-      scm_url: https://github.com/cloin/instruqt-snow
+      scm_url: https://github.com/abwalczyk/instruqt-snow
       scm_update_on_launch: true
       controller_host: "https://localhost"
       controller_username: admin

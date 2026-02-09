@@ -40,12 +40,14 @@ tee /tmp/problem-attach.yml << EOF
       assigned_to: "{{ lookup('env', 'SN_USERNAME') }}"
 
   - name: Update incident status now that problem has been created
-      servicenow.itsm.incident:
-      number: "{{ item.number }}"
-      state: in_progress
-      other:
-          problem_id: "{{ problem.record.number }}"
-      loop: "{{ incident_list }}"
+      servicenow.itsm.api:
+        table: incident
+        method: patch
+        sys_id: "{{ item.sys_id }}"
+        body:
+          state: "2"
+          problem_id: "{{ problem.record.sys_id }}"
+      loop: "{{ incidents.records }}"
 
   - debug:
       msg: "A new problem has been created {{ problem.record.number }}"

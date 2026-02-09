@@ -163,7 +163,7 @@ tee /tmp/setup-controller.yml << EOF
       organization: Default
       state: present
       scm_type: git
-      scm_url: https://github.com/cloin/instruqt-snow
+      scm_url: https://github.com/abwalczyk/instruqt-snow
       controller_host: "https://localhost"
       controller_username: admin
       controller_password: ansible123!
